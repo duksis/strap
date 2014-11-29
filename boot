@@ -68,6 +68,26 @@ tell application "System Events"
 end tell
 EOF
 }
+function check_homebrew() {
+  if [ "$(which brew)" = "/usr/local/bin/brew" ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+function homebrew() {
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+function check_ruby_version_manager() {
+  if [ $(hash rvm 2>/dev/null; echo $?) -eq 0 ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+function ruby_version_manager() {
+  \curl -sSL https://get.rvm.io | bash -s latest --ruby
+}
 function check_clone() {
   if [ -d $2 ]; then
     return 0
@@ -80,5 +100,7 @@ function clone() {
 }
 need directory ~/code
 need commandline_tools
+need ruby_version_manager
+need homebrew
 need clone https://github.com/duksis/strap.git ~/code/strap
 [ -f ~/code/strap/install ] && ~/code/strap/install
