@@ -47,24 +47,12 @@ function commandline_tools() {
   xcode-select --install
   sleep 1
   osascript << EOF
-if enabledGUISCripting(true) then
-  -- GUI Scripting statements go here
-  display dialog "GUI Scripting is enabled"
-else
-  --non-GUI scripting statements go here
-  display dialog "GUI Scripting is disabled"
-end if
-
-on enabledGUISCripting(switch)
-  tell application "System Events"
-    activate
-    if not (UI elements enabled) then set (UI elements enabled) to true
-    tell process "Install Command Line Developer Tools"
-      keystroke return
-      click button "Agree" of window "License Agreement"
-    end tell
+tell application "System Events"
+  tell process "Install Command Line Developer Tools"
+    keystroke return
+    click button "Agree" of window "License Agreement"
   end tell
-end enabledGUISCripting
+end tell
 EOF
 }
 function check_clone() {
