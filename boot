@@ -44,7 +44,9 @@ function check_commandline_tools() {
 }
 function commandline_tools() {
   # https://gist.github.com/brysgo/9007731
+  # jacobsalmela.com
   sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access VALUES('kTCCServiceAccessibility','com.apple.RemoteDesktopAgent',1,1,1,NULL)"
+  sudo sqlite3 /Library/Application\ Support/com.apple.TCC/TCC.db "INSERT or REPLACE INTO access VALUES('kTCCServiceAccessibility','com.apple.Terminal',1,1,1,NULL)"
   xcode-select --install
   sleep 1
   osascript << EOF
