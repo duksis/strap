@@ -11,8 +11,17 @@ function need() {
     else
       status="${red}failed"
     fi
+    wait_for check_$fun
   fi
   color_echo "$message" $status
+}
+function wait_for() {
+  fun=$1; shift
+  for i in {1..100}; do
+    sleep 5
+    $fun $*
+    [ $? -eq 0 ] && break
+  done
 }
 function color_echo() {
   red='\033[0;31m';green='\033[0;32m';white='\033[1;37m';NC='\033[0m' # No Color
