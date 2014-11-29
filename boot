@@ -1,15 +1,15 @@
 #!/bin/sh
 function need() {
   fun=$1; shift; args=$*
-  message="$fun $args creation: "
-  status="${white}present"
+  message="$fun $args setup: "
+  status="present"
   check_$fun $*
   if [ $? -ne 0 ]; then
     $fun $*
     if [ $? -eq 0 ]; then
-      status="${green}done"
+      status="done"
     else
-      status="${red}failed"
+      status="failed"
     fi
     wait_for check_$fun
   fi
