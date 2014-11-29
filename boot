@@ -79,14 +79,15 @@ function homebrew() {
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 function check_ruby_version_manager() {
-  if [ $(hash rvm 2>/dev/null; echo $?) -eq 0 ]; then
+  if [ -f ~/.rvm/scripts/rvm ]; then
     return 0
   else
     return 1
   fi
 }
 function ruby_version_manager() {
-  \curl -sSL https://get.rvm.io | bash -s latest --ruby
+  \curl -sSL https://get.rvm.io | bash -s latest
+  source ~/.rvm/scripts/rvm
 }
 function check_clone() {
   if [ -d $2 ]; then
