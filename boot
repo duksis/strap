@@ -115,6 +115,9 @@ function app_from_image() {
   rm "/tmp/$1.dmg"
 }
 function no_app_from_image() { rm -fr "/Applications/$1.app"; }
+function check_rvm_ruby() { [ "$(rvm list | grep $1 | cut -d' ' -f2)" = "$1" ]; }
+function rvm_ruby() { rvm install $1; }
+function no_rvm_ruby() { rvm uninstall $1; }
 function install_dotfiles() {
   old_pwd=`pwd`; cd $1; rake install; cd $old_pwd
 }
@@ -126,6 +129,7 @@ function no_install_dotfiles() {
 need directory ~/code
 need commandline_tools
 need ruby_version_manager
+need rvm_ruby 'ruby-2.1.4'
 need homebrew
 need brew_package tmux
 need brew_package wget
