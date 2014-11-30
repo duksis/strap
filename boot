@@ -1,32 +1,32 @@
 #!/bin/sh
 function need() {
-  fun=$1; shift; args=$*
-  message="$fun $args setup: "
+  fun=$1; shift
+  message="$fun $* setup: "
   status="present"
-  if !( check_$fun "$1" ); then
-    $fun $args
+  if !( check_$fun "$1" "$2" ); then
+    $fun "$1" "$2" "$3"
     if [ $? -eq 0 ]; then
       status="done"
     else
       status="failed"
     fi
-    wait_for check_$fun "$1"
+    wait_for check_$fun "$1" "$2"
   fi
   color_echo "$message" $status
 }
 function dont() {
   shift; # remove the 'need' keyword
-  fun=$1; shift; args=$*
-  message="$fun $args droping: "
+  fun=$1; shift
+  message="$fun $* droping: "
   status="not present"
-  if ( check_$fun "$1" ); then
-    no_$fun $*
+  if ( check_$fun "$1" "$2" ); then
+    no_$fun "$1" "$2" "$3"
     if [ $? -eq 0 ]; then
       status="done"
     else
       status="failed"
     fi
-    wait_for_not check_$fun "$1"
+    wait_for_not check_$fun "$1" "$2"
   fi
   color_echo "$message" "$status"
 
@@ -35,14 +35,14 @@ function wait_for() {
   fun=$1; shift
   for i in {1..100}; do
     sleep 5
-    $( $fun "$1" ) && break
+    $( $fun "$1" "$2" ) && break
   done
 }
 function wait_for_not() {
   fun=$1; shift
   for i in {1..100}; do
     sleep 5
-    $( ! $fun "$1" ) && break
+    $( ! $fun "$1" "$2" ) && break
   done
 }
 function color_echo() {
@@ -93,12 +93,13 @@ function ruby_version_manager() {
   source ~/.rvm/scripts/rvm
 }
 function check_brew_package() {
-  [ "$(brew info $1 | sed '3q;d')" != "Not installed" ]
+  [ "$(brew info $1 | grep '^Not installed')" != "Not installed" ]
 }
-function brew_package() { brew install $1; }
+function brew_package() { brew update && brew install $1; }
 function no_brew_package() { brew uninstall $1; }
 function check_clone() { [ -d $2 ]; }
 function clone() { git clone $1 $2; }
+function no_clone() { rm -fr $2; }
 function check_app_from_archive() { [ -d "/Applications/$1.app" ]; }
 function app_from_archive() {
   ([ -f /tmp/$1.zip ] || curl -S $2 > /tmp/$1.zip) && \
@@ -110,9 +111,7 @@ function no_app_from_archive() { rm -fr "/Applications/$1.app"; }
 function check_app_from_image() { [ -d "/Applications/$1.app" ]; }
 function app_from_image() {
   ([ -f "/tmp/$1.dmg" ] || curl -S $2 > "/tmp/$1.dmg") && \
-  hdiutil attach "/tmp/$1.dmg" && \
-  sudo cp -r "/Volumes/$1/$1.app" "/Applications/" && \
-  hdiutil detach "/Volumes/Sublime Text 2" && \
+  hdiutil attach "/tmp/$1.dmg" && \ sudo cp -r "/Volumes/$1/$1.app" /Applications/ && \ hdiutil detach "/Volumes/$1" && \
   rm "/tmp/$1.dmg"
 }
 function no_app_from_image() { rm -fr "/Applications/$1.app"; }
@@ -130,10 +129,17 @@ need ruby_version_manager
 need homebrew
 need brew_package tmux
 need brew_package wget
-dont need brew_package tmux-mem-cpu-load
+need brew_package nvm
+need brew_package percona-server
+need brew_package redis
+# need java 1.7 JRE and JDK
+#need brew_package elasticsearch
+need brew_package tmux-mem-cpu-load
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need app_from_image 'Google Chrome' https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
+# need app_from_image KeePassX http://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
+need clone git://github.com/mururu/exenv.git ~/.exenv
 need install_dotfiles ~/code/dotfiles
 need clone https://github.com/duksis/strap.git ~/code/strap
 
