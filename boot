@@ -3,30 +3,54 @@ function need() {
   fun=$1; shift; args=$*
   message="$fun $args setup: "
   status="present"
-  if ! $( check_$fun $* ); then
-    $fun $*
+  if !( check_$fun "$1" ); then
+    $fun $args
     if [ $? -eq 0 ]; then
       status="done"
     else
       status="failed"
     fi
-    wait_for check_$fun $args
+    wait_for check_$fun "$1"
   fi
   color_echo "$message" $status
+}
+function dont() {
+  shift; # remove the 'need' keyword
+  fun=$1; shift; args=$*
+  message="$fun $args droping: "
+  status="not present"
+  if ( check_$fun "$1" ); then
+    no_$fun $*
+    if [ $? -eq 0 ]; then
+      status="done"
+    else
+      status="failed"
+    fi
+    wait_for_not check_$fun "$1"
+  fi
+  color_echo "$message" "$status"
+
 }
 function wait_for() {
   fun=$1; shift
   for i in {1..100}; do
     sleep 5
-    $( $fun $* ) && break
+    $( $fun "$1" ) && break
+  done
+}
+function wait_for_not() {
+  fun=$1; shift
+  for i in {1..100}; do
+    sleep 5
+    $( ! $fun "$1" ) && break
   done
 }
 function color_echo() {
   red='\033[0;31m';green='\033[0;32m';white='\033[1;37m';NC='\033[0m' # No Color
-  if [ "$2" = "present" ]; then
+  if [ "$2" = "present" -o "$2" = "not present" ]; then
     status="${white}$2"
   elif [ "$2" = "done" ]; then
-    status="{green}$2"
+    status="${green}$2"
   else
     status="${red}$2"
   fi
@@ -71,20 +95,46 @@ function ruby_version_manager() {
 function check_brew_package() {
   [ "$(brew info $1 | sed '3q;d')" != "Not installed" ]
 }
-function brew_package() {
-  echo "brewing package $1"
+function brew_package() { brew install $1; }
+function no_brew_package() { brew uninstall $1; }
+function check_clone() { [ -d $2 ]; }
+function clone() { git clone $1 $2; }
+function check_app_from_archive() { [ -d "/Applications/$1.app" ]; }
+function app_from_archive() {
+  ([ -f /tmp/$1.zip ] || curl -S $2 > /tmp/$1.zip) && \
+  unzip /tmp/$1.zip -d /tmp/ && \
+  rm /tmp/$1.zip && \
+  mv /tmp/$1.app /Applications/
 }
-function check_clone() {
-  [ -d $2 ]
+function no_app_from_archive() { rm -fr "/Applications/$1.app"; }
+function check_app_from_image() { [ -d "/Applications/$1.app" ]; }
+function app_from_image() {
+  ([ -f "/tmp/$1.dmg" ] || curl -S $2 > "/tmp/$1.dmg") && \
+  hdiutil attach "/tmp/$1.dmg" && \
+  sudo cp -r "/Volumes/$1/$1.app" "/Applications/" && \
+  hdiutil detach "/Volumes/Sublime Text 2" && \
+  rm "/tmp/$1.dmg"
 }
-function clone() {
-  git clone $1 $2
+function no_app_from_image() { rm -fr "/Applications/$1.app"; }
+function install_dotfiles() {
+  old_pwd=`pwd`; cd $1; rake install; cd $old_pwd
 }
+function check_install_dotfiles() { [ -L ~/.bash_profile ] ;}
+function no_install_dotfiles() {
+  find ~ -type l -exec unlink {} \;
+}
+
 need directory ~/code
 need commandline_tools
 need ruby_version_manager
 need homebrew
 need brew_package tmux
+need brew_package wget
+dont need brew_package tmux-mem-cpu-load
+need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
+need app_from_image 'Google Chrome' https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
+need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
+need install_dotfiles ~/code/dotfiles
 need clone https://github.com/duksis/strap.git ~/code/strap
 
 [ -f ~/code/strap/install ] && ~/code/strap/install
