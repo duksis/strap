@@ -3,15 +3,14 @@ function need() {
   fun=$1; shift; args=$*
   message="$fun $args setup: "
   status="present"
-  check_$fun $*
-  if [ $? -ne 0 ]; then
+  if ! $( check_$fun $* ); then
     $fun $*
     if [ $? -eq 0 ]; then
       status="done"
     else
       status="failed"
     fi
-    wait_for check_$fun
+    wait_for check_$fun $args
   fi
   color_echo "$message" $status
 }
@@ -19,8 +18,7 @@ function wait_for() {
   fun=$1; shift
   for i in {1..100}; do
     sleep 5
-    $fun $*
-    [ $? -eq 0 ] && break
+    $( $fun $* ) && break
   done
 }
 function color_echo() {
@@ -34,22 +32,11 @@ function color_echo() {
   fi
   echo "$1 $status${NC}"
 }
-function check_directory() {
-  path=$1
-  if [ -d $path ]; then
-    return 0
-  else
-    return 1
-  fi
-}
+function check_directory() { path=$1; [ -d $path ]; }
 function directory() { path=$1; mkdir $path; }
 function check_commandline_tools() {
   xcode_path=$(xcode-select -p)
-  if [ "$xcode_path" = '/Library/Developer/CommandLineTools' ]; then
-    return 0
-  else
-    return 1
-  fi
+  [ "$xcode_path" = '/Library/Developer/CommandLineTools' ]
 }
 function commandline_tools() {
   # https://gist.github.com/brysgo/9007731
@@ -69,32 +56,26 @@ end tell
 EOF
 }
 function check_homebrew() {
-  if [ "$(which brew)" = "/usr/local/bin/brew" ]; then
-    return 0
-  else
-    return 1
-  fi
+  [ "$(which brew)" = "/usr/local/bin/brew" ]
 }
 function homebrew() {
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 function check_ruby_version_manager() {
-  if [ -f ~/.rvm/scripts/rvm ]; then
-    return 0
-  else
-    return 1
-  fi
+  [ -f ~/.rvm/scripts/rvm ]
 }
 function ruby_version_manager() {
   \curl -sSL https://get.rvm.io | bash -s latest
   source ~/.rvm/scripts/rvm
 }
+function check_brew_package() {
+  [ "$(brew info $1 | sed '3q;d')" != "Not installed" ]
+}
+function brew_package() {
+  echo "brewing package $1"
+}
 function check_clone() {
-  if [ -d $2 ]; then
-    return 0
-  else
-    return 1
-  fi
+  [ -d $2 ]
 }
 function clone() {
   git clone $1 $2
@@ -103,5 +84,7 @@ need directory ~/code
 need commandline_tools
 need ruby_version_manager
 need homebrew
+need brew_package tmux
 need clone https://github.com/duksis/strap.git ~/code/strap
+
 [ -f ~/code/strap/install ] && ~/code/strap/install
