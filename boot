@@ -116,7 +116,9 @@ function no_app_from_archive() { rm -fr "/Applications/$1.app"; }
 function check_app_from_image() { [ -d "/Applications/$1.app" ]; }
 function app_from_image() {
   ([ -f "/tmp/$1.dmg" ] || curl -S $2 > "/tmp/$1.dmg") && \
-  hdiutil attach "/tmp/$1.dmg" && \ sudo cp -r "/Volumes/$1/$1.app" /Applications/ && \ hdiutil detach "/Volumes/$1" && \
+  hdiutil attach "/tmp/$1.dmg" && \
+  sudo cp -r "/Volumes/$1/$1.app" /Applications/ && \
+  hdiutil detach "/Volumes/$1" && \
   rm "/tmp/$1.dmg"
 }
 function no_app_from_image() { rm -fr "/Applications/$1.app"; }
@@ -149,6 +151,7 @@ need brew_cask_package java
 need brew_package elasticsearch
 need brew_cask_package keepassx
 need brew_cask_package alfred
+need brew_cask_package evernote
 need brew_cask_package tunnelblick
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need app_from_image 'Google Chrome' https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
