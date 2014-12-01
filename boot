@@ -97,6 +97,11 @@ function check_brew_package() {
 }
 function brew_package() { brew update && brew install $1; }
 function no_brew_package() { brew uninstall $1; }
+function check_brew_cask_package() {
+  [ "$(brew cask info $1 | grep '^Not installed')" != "Not installed" ]
+}
+function brew_cask_package() { brew cask update && brew cask install $1; }
+function no_brew_cask_package() { brew cask uninstall $1; }
 function check_clone() { [ -d $2 ]; }
 function clone() { git clone $1 $2; }
 function no_clone() { rm -fr $2; }
@@ -132,16 +137,21 @@ need ruby_version_manager
 need rvm_ruby 'ruby-2.1.4'
 need homebrew
 need brew_package tmux
+need brew_package tmux-mem-cpu-load
 need brew_package wget
 need brew_package nvm
 need brew_package percona-server
 need brew_package redis
-# need java 1.7 JRE and JDK
-#need brew_package elasticsearch
-need brew_package tmux-mem-cpu-load
+need brew_package qt
+need brew_package v8
+need brew_package "caskroom/cask/brew-cask"
+need brew_cask_package java
+need brew_package elasticsearch
+need brew_cask_package keepassx
+need brew_cask_package alfred
+need brew_cask_package tunnelblick
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need app_from_image 'Google Chrome' https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
-# need app_from_image KeePassX http://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
 need clone git://github.com/mururu/exenv.git ~/.exenv
 need install_dotfiles ~/code/dotfiles
