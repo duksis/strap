@@ -146,6 +146,7 @@ need brew_package percona-server
 need brew_package redis
 need brew_package qt
 need brew_package v8
+need brew_package weechat
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package java
 need brew_package elasticsearch
