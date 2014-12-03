@@ -122,7 +122,7 @@ function app_from_image() {
   rm "/tmp/$1.dmg"
 }
 function no_app_from_image() { rm -fr "/Applications/$1.app"; }
-function check_rvm_ruby() { [ "$(rvm list | grep $1 | cut -d' ' -f2)" = "$1" ]; }
+function check_rvm_ruby() { [ "$(rvm list | grep $1 | cut -c4- | cut -d' ' -f1)" = "$1" ]; }
 function rvm_ruby() { rvm install $1; }
 function no_rvm_ruby() { rvm uninstall $1; }
 function install_dotfiles() {
@@ -136,7 +136,8 @@ function no_install_dotfiles() {
 need directory ~/code
 need commandline_tools
 need ruby_version_manager
-need rvm_ruby 'ruby-2.1.4'
+dont need rvm_ruby 'ruby-2.1.4'
+need rvm_ruby 'ruby-2.1.5'
 need homebrew
 need brew_package tmux
 need brew_package tmux-mem-cpu-load
@@ -155,6 +156,7 @@ need brew_cask_package alfred
 need brew_cask_package evernote
 need brew_cask_package tunnelblick
 need brew_cask_package flowdock
+need brew_cask_package mailbox
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need app_from_image 'Google Chrome' https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
