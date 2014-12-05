@@ -136,26 +136,27 @@ function no_install_dotfiles() {
 need directory ~/code
 need commandline_tools
 need ruby_version_manager
-dont need rvm_ruby 'ruby-2.1.4'
 need rvm_ruby 'ruby-2.1.5'
 need homebrew
 need brew_package tmux
 need brew_package tmux-mem-cpu-load
 need brew_package wget
-need brew_package nvm
+need brew_package node
 need brew_package percona-server
 need brew_package redis
 need brew_package qt
 need brew_package v8
 need brew_package weechat
+need brew_package erlang
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package java
 need brew_package elasticsearch
-need brew_cask_package keepassx
+dont need brew_cask_package keepassx
 need brew_cask_package alfred
 need brew_cask_package evernote
-need brew_cask_package tunnelblick
+#need brew_cask_package tunnelblick
 need brew_cask_package flowdock
+need brew_cask_package skype
 need brew_cask_package mailbox
 need brew_cask_package spotify
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
