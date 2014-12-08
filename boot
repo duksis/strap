@@ -133,6 +133,17 @@ function check_install_dotfiles() { [ -L ~/.bash_profile ] ;}
 function no_install_dotfiles() {
   find ~ -type l -exec unlink {} \;
 }
+function check_latvian_keyboard_layout() {
+  [ -f ~/Library/Keyboard\ Layouts/Latvian-pounded.keylayout ]
+}
+function latvian_keyboard_layout() {
+  git clone git://github.com/duksis/Latvian-pounded.keylayout ~/code/Latvian-pounded.keylayout
+  mv ~/code/Latvian-pounded.keylayout/Latvian-pounded.* ~/Library/Keyboard\ Layouts/
+  rm -fr ~/code/Latvian-pounded.keylayout
+}
+function no_latvian_keyboard_layout() {
+  rm -fr ~/Library/Keyboard\ Layouts/Latvian-pounded.*
+}
 
 need directory ~/code
 need commandline_tools
@@ -167,6 +178,7 @@ need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dm
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
 need clone git://github.com/mururu/exenv.git ~/.exenv
+need latvian_keyboard_layout
 need install_dotfiles ~/code/dotfiles
 need clone https://github.com/duksis/strap.git ~/code/strap
 
