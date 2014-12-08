@@ -117,11 +117,12 @@ function check_app_from_image() { [ -d "/Applications/$1.app" ]; }
 function app_from_image() {
   ([ -f "/tmp/$1.dmg" ] || curl -S $2 > "/tmp/$1.dmg") && \
   hdiutil attach "/tmp/$1.dmg" && \
-  sudo cp -r "/Volumes/$1/$1.app" /Applications/ && \
-  hdiutil detach "/Volumes/$1" && \
+  volume=`ls -d /Volumes/$1*`
+  sudo cp -r "$volume/$1.app" /Applications/ && \
+  hdiutil detach "$volume" && \
   rm "/tmp/$1.dmg"
 }
-function no_app_from_image() { rm -fr "/Applications/$1.app"; }
+function no_app_from_image() { sudo rm -fr "/Applications/$1.app"; }
 function check_rvm_ruby() { [ "$(rvm list | grep $1 | cut -c4- | cut -d' ' -f1)" = "$1" ]; }
 function rvm_ruby() { rvm install $1; }
 function no_rvm_ruby() { rvm uninstall $1; }
