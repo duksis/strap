@@ -158,6 +158,7 @@ need brew_cask_package dropbox
 need brew_cask_package mailbox
 need brew_cask_package evernote
 #need brew_cask_package tunnelblick
+need brew_cask_package spotify
 need brew_cask_package flowdock
 need brew_cask_package skype
 need brew_cask_package google-chrome
