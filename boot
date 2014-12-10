@@ -161,6 +161,7 @@ need brew_package v8
 need brew_package weechat
 need brew_package erlang
 need brew_package tree
+need brew_package vim
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package java
 need brew_package elasticsearch
