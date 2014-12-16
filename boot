@@ -158,6 +158,7 @@ need brew_package percona-server
 need brew_package redis
 need brew_package qt
 need brew_package v8
+need brew_package phantomjs
 need brew_package weechat
 need brew_package erlang
 need brew_package tree
@@ -174,6 +175,8 @@ need brew_cask_package spotify
 need brew_cask_package flowdock
 need brew_cask_package skype
 need brew_cask_package google-chrome
+need brew_cask_package firefox
+need brew_cask_package macdown
 need brew_cask_package spotify
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
