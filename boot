@@ -183,6 +183,7 @@ need brew_cask_package google-chrome
 need brew_cask_package firefox
 need brew_cask_package macdown
 need brew_cask_package spotify
+need brew_cask_package libreoffice
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
