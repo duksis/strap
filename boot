@@ -158,9 +158,13 @@ need brew_package percona-server
 need brew_package redis
 need brew_package qt
 need brew_package v8
+need brew_package libconfig
+need brew_package readline
+need brew_package libevent
 need brew_package phantomjs
 need brew_package weechat
 need brew_package erlang
+need brew_package lua
 need brew_package tree
 need brew_package vim
 need brew_package "caskroom/cask/brew-cask"
@@ -173,6 +177,7 @@ need brew_cask_package evernote
 #need brew_cask_package tunnelblick
 need brew_cask_package spotify
 need brew_cask_package flowdock
+need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
 need brew_cask_package firefox
