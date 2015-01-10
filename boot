@@ -167,6 +167,7 @@ need brew_package erlang
 need brew_package lua
 need brew_package tree
 need brew_package vim
+need brew_package keybase
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package java
 need brew_package elasticsearch
