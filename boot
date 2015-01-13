@@ -147,9 +147,9 @@ function no_latvian_keyboard_layout() {
 
 need directory ~/code
 need commandline_tools
+need homebrew
 need ruby_version_manager
 need rvm_ruby 'ruby-2.1.5'
-need homebrew
 need brew_package tmux
 need brew_package tmux-mem-cpu-load
 need brew_package wget
