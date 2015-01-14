@@ -156,6 +156,7 @@ need brew_package tmux-mem-cpu-load
 need brew_package wget
 need brew_package node
 need brew_package percona-server
+need brew_package postgresql
 need brew_package redis
 need brew_package qt
 need brew_package v8
