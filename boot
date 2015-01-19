@@ -187,6 +187,8 @@ need brew_cask_package skype
 need brew_cask_package google-chrome
 need brew_cask_package firefox
 need brew_cask_package macdown
+need brew_cask_package mactex
+need brew_cask_package sequel-pro
 need brew_cask_package spotify
 need brew_cask_package libreoffice
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
