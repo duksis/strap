@@ -166,6 +166,7 @@ need brew_package libevent
 need brew_package phantomjs
 need brew_package weechat
 need brew_package erlang
+need brew_package elixir
 need brew_package lua
 need brew_package tree
 need brew_package vim
