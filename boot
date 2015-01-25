@@ -177,12 +177,12 @@ need brew_cask_package java
 need brew_package elasticsearch
 need brew_cask_package alfred
 need brew_cask_package dropbox
-dont need brew_cask_package mailbox
 need brew_cask_package evernote
 need brew_cask_package tunnelblick
 need brew_cask_package spotify
 need brew_cask_package time-out
 need brew_cask_package flowdock
+need brew_cask_package hipchat
 need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
