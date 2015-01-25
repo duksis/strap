@@ -186,6 +186,7 @@ need brew_cask_package hipchat
 need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
+need brew_cask_package google-drive
 need brew_cask_package firefox
 need brew_cask_package macdown
 need brew_cask_package mactex
