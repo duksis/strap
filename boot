@@ -160,6 +160,7 @@ need brew_package postgresql
 need brew_package redis
 need brew_package qt
 need brew_package v8
+need brew_package htop-osx
 need brew_package libconfig
 need brew_package readline
 need brew_package libevent
