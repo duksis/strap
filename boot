@@ -159,7 +159,7 @@ need brew_package tmux
 need brew_package tmux-mem-cpu-load
 need brew_package wget
 need brew_package node
-dont need brew_package percona-server
+need brew_package percona-server
 dont need brew_package postgresql
 need brew_package redis
 need brew_package qt
@@ -170,13 +170,13 @@ need brew_package readline
 need brew_package libevent
 need brew_package phantomjs
 dont need brew_package weechat
-dont need brew_package erlang
-dont need brew_package elixir
-dont need brew_package lua
-dont need brew_package tree
+need brew_package erlang
+need brew_package elixir
+need brew_package lua
+need brew_package tree
 need brew_package vim
 need brew_package keybase
-dont need brew_package heroku-toolbelt
+need brew_package heroku-toolbelt
 need brew_package ansible
 need brew_package stress
 need brew_package "caskroom/cask/brew-cask"
@@ -186,21 +186,21 @@ need brew_cask_package alfred
 need brew_cask_package dropbox
 need brew_cask_package evernote
 need brew_cask_package tunnelblick
-dont need brew_cask_package spotify
-dont need brew_cask_package time-out
+need brew_cask_package spotify
+need brew_cask_package time-out
 need brew_cask_package flowdock
 dont need brew_cask_package hipchat
 need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
-dont need brew_cask_package google-drive
-dont need brew_cask_package firefox
-dont need brew_cask_package macdown
+need brew_cask_package google-drive
+need brew_cask_package firefox
+need brew_cask_package macdown
 need brew_cask_package mactex
 dont need brew_cask_package sequel-pro
-dont need brew_cask_package virtualbox
-dont need brew_cask_package vagrant
-dont need brew_cask_package libreoffice
+need brew_cask_package virtualbox
+need brew_cask_package vagrant
+need brew_cask_package libreoffice
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
