@@ -127,7 +127,11 @@ function check_rvm_ruby() { [ "$(rvm list | grep $1 | cut -c4- | cut -d' ' -f1)"
 function rvm_ruby() { rvm install $1; }
 function no_rvm_ruby() { rvm uninstall $1; }
 function install_dotfiles() {
-  old_pwd=`pwd`; cd $1; rake install; cd $old_pwd
+  old_pwd=`pwd`; cd $1
+  rake install <<EOF
+a
+EOF
+  cd $old_pwd
 }
 function check_install_dotfiles() { [ -L ~/.bash_profile ] ;}
 function no_install_dotfiles() {
