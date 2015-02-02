@@ -168,6 +168,7 @@ need brew_package htop-osx
 need brew_package libconfig
 need brew_package readline
 need brew_package libevent
+need brew_package imagemagick
 need brew_package phantomjs
 dont need brew_package weechat
 need brew_package erlang
