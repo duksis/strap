@@ -177,6 +177,7 @@ need brew_package lua
 need brew_package tree
 need brew_package vim
 need brew_package keybase
+need brew_package exercism
 need brew_package heroku-toolbelt
 need brew_package ansible
 need brew_package stress
@@ -190,7 +191,7 @@ need brew_cask_package tunnelblick
 need brew_cask_package spotify
 need brew_cask_package time-out
 need brew_cask_package flowdock
-dont need brew_cask_package hipchat
+need brew_cask_package hipchat
 need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
