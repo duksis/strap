@@ -160,7 +160,7 @@ need brew_package tmux-mem-cpu-load
 need brew_package wget
 need brew_package node
 need brew_package percona-server
-dont need brew_package postgresql
+need brew_package postgresql
 need brew_package redis
 need brew_package qt
 need brew_package v8
@@ -179,9 +179,11 @@ need brew_package vim
 need brew_package keybase
 need brew_package heroku-toolbelt
 need brew_package ansible
-dont need brew_package ngrok
+need brew_package ngrok
 dont need brew_package stress
 need brew_package "caskroom/cask/brew-cask"
+need brew_cask_package vlc
+need brew_cask_package filezilla
 #need brew_cask_package java
 need brew_package elasticsearch
 need brew_package rabbitmq
@@ -203,7 +205,7 @@ need brew_cask_package google-chrome
 need brew_cask_package google-drive
 dont need brew_cask_package firefox
 need brew_cask_package macdown
-need brew_cask_package mactex
+#need brew_cask_package mactex
 dont need brew_cask_package sequel-pro
 dont need brew_cask_package virtualbox
 need brew_cask_package vagrant
