@@ -153,7 +153,7 @@ need directory ~/code
 need commandline_tools
 need homebrew
 need ruby_version_manager
-need rvm_ruby 'ruby-2.1.5'
+need rvm_ruby 'ruby-2.2.2'
 need brew_package git # OSX has an outdated version
 need brew_package tmux
 need brew_package tmux-mem-cpu-load
@@ -205,6 +205,7 @@ need brew_cask_package google-chrome
 need brew_cask_package google-drive
 need brew_cask_package firefox
 need brew_cask_package macdown
+need brew_cask_package adobe-reader
 #need brew_cask_package mactex
 #dont need brew_cask_package sequel-pro
 #dont need brew_cask_package virtualbox
