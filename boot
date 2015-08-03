@@ -178,38 +178,38 @@ need brew_package tree
 need brew_package vim
 need brew_package keybase
 need brew_package heroku-toolbelt
-need brew_package ansible
+dont need brew_package ansible
 need brew_package ngrok
-dont need brew_package stress
+#dont need brew_package stress
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package vlc
 need brew_cask_package filezilla
-#need brew_cask_package java
+need brew_cask_package java
 need brew_package elasticsearch
 need brew_package rabbitmq
-#need brew_cask_package alfred
+need brew_cask_package alfred
 #need brew_cask_package chefdk
 need brew_cask_package dropbox
 need brew_cask_package caffeine
-#need brew_cask_package evernote
+need brew_cask_package evernote
 #need brew_cask_package tunnelblick
 need brew_cask_package spotify
 need brew_cask_package time-out
 need brew_cask_package ngrok
 need brew_cask_package flowdock
-dont need brew_cask_package hipchat
-#need brew_cask_package slack
-#need brew_cask_package telegram
+#dont need brew_cask_package hipchat
+need brew_cask_package slack
+need brew_cask_package telegram
 need brew_cask_package skype
 need brew_cask_package google-chrome
 need brew_cask_package google-drive
-dont need brew_cask_package firefox
+need brew_cask_package firefox
 need brew_cask_package macdown
 #need brew_cask_package mactex
-dont need brew_cask_package sequel-pro
-dont need brew_cask_package virtualbox
+#dont need brew_cask_package sequel-pro
+#dont need brew_cask_package virtualbox
 need brew_cask_package vagrant
-dont need brew_cask_package libreoffice
+#dont need brew_cask_package libreoffice
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
 need clone https://github.com/duksis/dotfiles.git ~/code/dotfiles
