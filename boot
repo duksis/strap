@@ -199,7 +199,7 @@ need brew_cask_package adobe-reader
 #need brew_cask_package mactex
 #dont need brew_cask_package sequel-pro
 #dont need brew_cask_package virtualbox
-need brew_cask_package vagrant
+#dont need brew_cask_package vagrant
 #dont need brew_cask_package libreoffice
 need app_from_image KeePassX https://www.keepassx.org/releases/KeePassX-0.4.3.dmg
 need app_from_archive iTerm https://iterm2.com/downloads/stable/iTerm2_v2_0.zip
