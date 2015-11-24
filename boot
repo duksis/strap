@@ -165,6 +165,7 @@ need brew_package elixir
 need brew_package lua
 need brew_package tree
 need brew_package vim
+need brew_package jq
 need brew_package keybase
 need brew_package heroku-toolbelt
 dont need brew_package ansible
