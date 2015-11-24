@@ -173,21 +173,25 @@ need brew_package ngrok
 #dont need brew_package stress
 need brew_package "caskroom/cask/brew-cask"
 need brew_cask_package vlc
-need brew_cask_package filezilla
-need brew_cask_package java
-need brew_package elasticsearch
-need brew_package rabbitmq
-need brew_cask_package alfred
+need brew_cask_package unrarx
+#need brew_cask_package filezilla
+#need brew_cask_package java
+#need brew_package elasticsearch
+#need brew_package rabbitmq
+#need brew_cask_package alfred
 #need brew_cask_package chefdk
-need brew_cask_package dropbox
-need brew_cask_package caffeine
-need brew_cask_package evernote
+#need brew_cask_package dropbox
+#need brew_cask_package caffeine
+#need brew_cask_package evernote
 #need brew_cask_package tunnelblick
-need brew_cask_package spotify
-need brew_cask_package sketch
+#need brew_cask_package spotify
+#need brew_cask_package sketch
+#need brew_cask_package xquartz
+#need brew_cask_package inkscape
+need brew_case_package gimp
 need brew_cask_package time-out
 need brew_cask_package ngrok
-need brew_cask_package flowdock
+dont need brew_cask_package flowdock
 #dont need brew_cask_package hipchat
 need brew_cask_package slack
 need brew_cask_package telegram
